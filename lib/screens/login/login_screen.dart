@@ -1,13 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/helpers/validators.dart';
+import 'package:loja_virtual/models/user.dart';
+import 'package:loja_virtual/models/user_manager.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
         title: Text("Login"),
@@ -17,6 +24,7 @@ class LoginScreen extends StatelessWidget {
         elevation: 4,
         margin: EdgeInsets.symmetric(horizontal: 10),
         child: Form(
+          key: _formKey,
           child: ListView(
             padding: EdgeInsets.all(18),
             shrinkWrap: true,
@@ -27,7 +35,10 @@ class LoginScreen extends StatelessWidget {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(hintText: "Email"),
                 validator: (email) {
-                  if (!emailValidator(email)) return "Email inválido";
+                  if (!emailValidator(email))
+                    return "Email inválido";
+                  else
+                    return null;
                 },
               ),
               SizedBox(
@@ -40,8 +51,11 @@ class LoginScreen extends StatelessWidget {
                 autocorrect: false,
                 validator: (senha) {
                   if (senha.isEmpty)
-                    return "A senha não pde seer nula";
-                  else if (senha.length < 6) return "A senha muito curta";
+                    return "A senha não pde ser nula";
+                  else if (senha.length < 6)
+                    return "A senha muito curta";
+                  else
+                    return null;
                 },
               ),
               Align(
@@ -62,7 +76,21 @@ class LoginScreen extends StatelessWidget {
                 height: 45,
                 child: RaisedButton(
                     onPressed: () {
-                      if (formKey.currentState.validate()) {}
+                      if (_formKey.currentState.validate()) {
+                        context.read<UserManager>().signIn(
+                            onSuccess: () {
+                              //  TODO: FECHAR LOGIN
+                            },
+                            onFail: (erro) {
+                              _scaffoldKey.currentState.showSnackBar(SnackBar(
+                                backgroundColor: Colors.redAccent,
+                                content: Text('Falha no Login: $erro'),
+                              ));
+                            },
+                            user: User(
+                                email: emailController.text,
+                                password: passwordController.text));
+                      }
                     },
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
