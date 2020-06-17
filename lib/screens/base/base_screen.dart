@@ -20,6 +20,7 @@ class BaseScreen extends StatelessWidget {
               title: Text("Home"),
             ),
           ),
+          
           Scaffold(
             drawer: CustomDrawer(),
             appBar: AppBar(

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/screens/base/base_screen.dart';
+import 'package:loja_virtual/screens/login/login_screen.dart';
 
 void main() {
   runApp(MyApp());
-  
 }
 
 class MyApp extends StatelessWidget {
@@ -12,13 +12,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Loja do Mateus ',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         
-        primarySwatch: Colors.blue,
-       
+        primaryColor: const Color.fromARGB(255, 4, 125, 141),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 4, 125, 141),
+        appBarTheme: AppBarTheme(elevation: 0),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BaseScreen()
+      home: LoginScreen()//BaseScreen(),
     );
   }
 }
