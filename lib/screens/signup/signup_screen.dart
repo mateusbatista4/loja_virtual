@@ -3,19 +3,18 @@ import 'package:loja_virtual/helpers/validators.dart';
 import 'package:loja_virtual/models/user.dart';
 import 'package:loja_virtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
+
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _password2Controller = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
-
     final User user = User();
     return Consumer<UserManager>(
-          builder:(context,userManager,child) => Scaffold(
+      builder: (context, userManager, child) => Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
           actions: <Widget>[
@@ -41,6 +40,7 @@ class SignUpScreen extends StatelessWidget {
                 shrinkWrap: true,
                 children: <Widget>[
                   TextFormField(
+                    enabled: !userManager.loading,
                     autocorrect: false,
                     decoration: InputDecoration(
                       hintText: 'Complete Name',
@@ -53,7 +53,7 @@ class SignUpScreen extends StatelessWidget {
                       else
                         return null;
                     },
-                    onSaved: (name){
+                    onSaved: (name) {
                       user.userName = name;
                     },
                   ),
@@ -61,10 +61,10 @@ class SignUpScreen extends StatelessWidget {
                     height: 15,
                   ),
                   TextFormField(
+                    enabled: !userManager.loading,
                     autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      
                       hintText: 'E-mail',
                     ),
                     validator: (email) {
@@ -75,7 +75,7 @@ class SignUpScreen extends StatelessWidget {
                       else
                         return null;
                     },
-                    onSaved: (email){
+                    onSaved: (email) {
                       user.email = email;
                     },
                   ),
@@ -83,6 +83,7 @@ class SignUpScreen extends StatelessWidget {
                     height: 15,
                   ),
                   TextFormField(
+                    enabled: !userManager.loading,
                     controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -93,7 +94,8 @@ class SignUpScreen extends StatelessWidget {
                         return "Campo obrigatório";
                       else if (senha.length < 6)
                         return 'Senha muito curta';
-                      else if(senha != _password2Controller.text) return 'As senhas devem ser iguais';
+                      else if (senha != _password2Controller.text)
+                        return 'As senhas devem ser iguais';
                       else
                         return null;
                     },
@@ -102,6 +104,7 @@ class SignUpScreen extends StatelessWidget {
                     height: 6,
                   ),
                   TextFormField(
+                    enabled: !userManager.loading,
                     controller: _password2Controller,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -112,11 +115,12 @@ class SignUpScreen extends StatelessWidget {
                         return "Campo obrigatório";
                       else if (senha.length < 6)
                         return 'Senha muito curta';
-                      else if(senha != _passwordController.text) return 'As senhas devem ser iguais';
+                      else if (senha != _passwordController.text)
+                        return 'As senhas devem ser iguais';
                       else
                         return null;
                     },
-                    onSaved: (pass){
+                    onSaved: (pass) {
                       user.password = pass;
                     },
                   ),
@@ -127,24 +131,23 @@ class SignUpScreen extends StatelessWidget {
                     height: 45,
                     child: RaisedButton(
                       onPressed: () {
-                       if( _formKey.currentState.validate()){
-                         _formKey.currentState.save();
-                         context.read<UserManager>().signUp(
-                           user: user,
-                           onSuccess: () {
-                             print('succe');
-                                    //  TODO: POP
-                                  },
-                                  onFail: (erro) {
-                                    _scaffoldKey.currentState.showSnackBar(
-                                      SnackBar(
-                                        backgroundColor: Colors.redAccent,
-                                        content: Text('Falha no registro: $erro'),
-                                      ),
-                                    );
-                                  },
-                         );
-                       }
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                          context.read<UserManager>().signUp(
+                                user: user,
+                                onSuccess: () {
+                                  Navigator.of(context).pop();
+                                },
+                                onFail: (erro) {
+                                  _scaffoldKey.currentState.showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.redAccent,
+                                      content: Text('Falha no registro: $erro'),
+                                    ),
+                                  );
+                                },
+                              );
+                        }
                       },
                       color: Theme.of(context).primaryColor,
                       child: Text(

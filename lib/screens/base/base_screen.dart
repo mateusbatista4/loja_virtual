@@ -15,8 +15,12 @@ class BaseScreen extends StatelessWidget {
         controller: myController,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
-          LoginScreen(),
-          
+          Scaffold(
+            drawer: CustomDrawer(),
+            appBar: AppBar(
+              title: Text("Home1"),
+            ),
+          ),
           Scaffold(
             drawer: CustomDrawer(),
             appBar: AppBar(

@@ -13,8 +13,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return ChangeNotifierProvider( 
       create: (_) => UserManager(),
+      lazy: false,
       child: MaterialApp(
         title: 'Loja do Mateus ',
         debugShowCheckedModeBanner: false,
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
             
             case '/signup':
               return MaterialPageRoute(builder: (_) => SignUpScreen());
+            case '/login':
+              return MaterialPageRoute(builder: (_) => LoginScreen());
             case '/base':
               return MaterialPageRoute(builder: (_) => BaseScreen());
               

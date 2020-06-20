@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/signup');
+                      Navigator.of(context).pushReplacementNamed('/signup');
                     })
           ],
           centerTitle: true,
@@ -102,6 +102,7 @@ class LoginScreen extends StatelessWidget {
                               userManager.signIn(
                                 onSuccess: () {
                                   //  TODO: FECHAR LOGIN
+                                  Navigator.of(context).pop();
                                 },
                                 onFail: (erro) {
                                   _scaffoldKey.currentState.showSnackBar(

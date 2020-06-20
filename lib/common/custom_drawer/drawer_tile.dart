@@ -9,11 +9,11 @@ class DrawerTile extends StatelessWidget {
   final String text;
   final int pageNumber;
   
-
+  
   @override
   Widget build(BuildContext context) {
      int current = context.watch<PageManager>().current;
-
+      final Color primColor = Theme.of(context).primaryColor; 
     return InkWell(
       onTap: () {
         
@@ -28,14 +28,14 @@ class DrawerTile extends StatelessWidget {
               child: Icon(
                 myIcon,
                 size: 32,
-                color: current == pageNumber ?   Colors.grey[900] : Colors.grey[600],
+                color: current == pageNumber ?   primColor : Colors.grey[600],
               ),
             ),
             Text(
               text,
               style: TextStyle(
                 fontSize: 16,
-                color:current == pageNumber ?  Colors.grey[900] : Colors.grey[600],
+                color:current == pageNumber ?  primColor : Colors.grey[600],
               ),
             ),
           ],
