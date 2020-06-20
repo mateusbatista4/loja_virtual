@@ -25,6 +25,7 @@ class LoginScreen extends StatelessWidget {
                         valueColor: AlwaysStoppedAnimation(Colors.white)),
                   )
                 : RaisedButton(
+                    elevation: 0,
                     color: Theme.of(context).primaryColor,
                     child: Text(
                       "SIGN UP",
