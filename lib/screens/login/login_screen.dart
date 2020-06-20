@@ -18,13 +18,21 @@ class LoginScreen extends StatelessWidget {
         key: _scaffoldKey,
         appBar: AppBar(
           actions: <Widget>[
-            userManager.loading? Container(
-               margin: EdgeInsets.only(right: 15,top: 10,bottom: 10),
-                            child: CircularProgressIndicator(
-                 
-                 valueColor: AlwaysStoppedAnimation(Colors.white)
-               ),
-             ): Container()
+            userManager.loading
+                ? Container(
+                    margin: EdgeInsets.only(right: 15, top: 10, bottom: 10),
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(Colors.white)),
+                  )
+                : RaisedButton(
+                    color: Theme.of(context).primaryColor,
+                    child: Text(
+                      "SIGN UP",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/signup');
+                    })
           ],
           centerTitle: true,
           title: Text("Login"),
