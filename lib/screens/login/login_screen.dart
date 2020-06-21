@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/helpers/validators.dart';
 import 'package:loja_virtual/models/user.dart';
@@ -102,7 +100,6 @@ class LoginScreen extends StatelessWidget {
                             if (_formKey.currentState.validate()) {
                               userManager.signIn(
                                 onSuccess: () {
-                                  //  TODO: FECHAR LOGIN
                                   Navigator.of(context).pop();
                                 },
                                 onFail: (erro) {
