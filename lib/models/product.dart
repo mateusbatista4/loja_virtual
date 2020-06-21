@@ -7,7 +7,7 @@ class Product{
     id = doc.documentID;
     name = doc['name'] as String;
     description = doc['description'] as String;
-    images = List<String>.from(doc.data[images] as List<dynamic>);
+    images = List<String>.from(doc.data['images'] as List<dynamic>);
   }
   String id;
   String name;

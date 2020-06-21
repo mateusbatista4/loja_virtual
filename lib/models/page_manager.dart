@@ -6,7 +6,7 @@ class PageManager {
   PageManager(this._controller);
 
   int current = 0;
-  
+
   void setPage(int next) {
     if (current == next) return;
     current = next;
