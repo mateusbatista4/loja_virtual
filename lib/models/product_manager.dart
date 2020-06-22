@@ -9,6 +9,31 @@ class ProductManager extends ChangeNotifier {
   }
   List<Product> allProducts = [];
 
+  String _search = '';
+
+  String get search => _search;
+
+  set search(String value) {
+    notifyListeners();
+    _search = value;
+  }
+
+  List<Product> get filteredProducts {
+    List<Product> filteredProducts = [];
+    if (search.isEmpty) {
+      filteredProducts.addAll(allProducts);
+    } else {
+      filteredProducts.addAll(
+        allProducts.where(
+          (prod) => prod.name.toLowerCase().contains(search),
+        ),
+      );
+    }
+    
+    return filteredProducts;
+    
+  }
+
   _loadAllProduts() async {
     final QuerySnapshot snapshotQuery =
         await firestore.collection('products').getDocuments();

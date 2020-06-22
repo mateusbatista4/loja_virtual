@@ -18,24 +18,30 @@ class ProductsScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {
-              showDialog(
+            onPressed: () async {
+              final search = await showDialog<String>(
                 context: context,
                 builder: (_) => SearchDialog(),
               );
+              if (search != null) {
+                context.read<ProductManager>().search = search;
+              }
             },
           )
         ],
       ),
       body: Consumer<ProductManager>(
-        builder: (_, productManager, __) => ListView.builder(
-          itemCount: productManager.allProducts.length,
-          itemBuilder: (_, index) {
-            return ProductsListTile(
-              product: productManager.allProducts[index],
-            );
-          },
-        ),
+        builder: (_, productManager, __) {
+          final filteredProducts = productManager.filteredProducts;
+          return ListView.builder(
+            itemCount: filteredProducts.length,
+            itemBuilder: (_, index) {
+              return ProductsListTile(
+                product: filteredProducts[index],
+              );
+            },
+          );
+        },
       ),
     );
   }
