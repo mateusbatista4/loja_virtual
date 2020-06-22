@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({Key key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +36,11 @@ class ProductsScreen extends StatelessWidget {
                     child: Container(
                       width: constrains.biggest.width,
                       child: Center(
-                          child: Text(
-                        '${productManager.search}',
-                        textAlign: TextAlign.center,
-                      )),
+                        child: Text(
+                          '${productManager.search}',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
                   );
                 },
@@ -69,7 +69,8 @@ class ProductsScreen extends StatelessWidget {
                       icon: Icon(Icons.close),
                       onPressed: () {
                         productManager.search = '';
-                      });
+                      },
+                    );
             },
           )
         ],

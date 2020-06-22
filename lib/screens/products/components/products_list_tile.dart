@@ -23,7 +23,6 @@ class ProductsListTile extends StatelessWidget {
               child: Image.network(product.images.first),
             ),
             Column(
-             
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
@@ -51,7 +50,6 @@ class ProductsListTile extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-
               ],
             )
           ],
