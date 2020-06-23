@@ -19,38 +19,42 @@ class ProductsListTile extends StatelessWidget {
         child: Row(
           children: <Widget>[
             AspectRatio(
+              
               aspectRatio: 1,
               child: Image.network(product.images.first),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  product.name,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Text(
-                    'A partir de',
+            Padding(
+              padding: const EdgeInsets.only(left:8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    product.name,
                     style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 12,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                ),
-                Text(
-                  'R\$ 1999.99',
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
+                  Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: Text(
+                      'A partir de',
+                      style: TextStyle(
+                        color: Colors.grey[400],
+                        fontSize: 12,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  Text(
+                    'R\$ 1999.99',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

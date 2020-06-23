@@ -63,8 +63,8 @@ class ProductsScreen extends StatelessWidget {
                           context: context,
                           builder: (_) => SearchDialog(
                             search: (tx) {
-                            productManager.search = tx;
-                          },
+                              productManager.search = tx;
+                            },
                           ),
                         );
                         if (search != null) {
