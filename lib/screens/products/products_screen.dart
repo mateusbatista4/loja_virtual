@@ -27,6 +27,9 @@ class ProductsScreen extends StatelessWidget {
                         context: context,
                         builder: (_) => SearchDialog(
                           initialText: productManager.search,
+                          search: (tx) {
+                            productManager.search = tx;
+                          },
                         ),
                       );
                       if (search != null) {
@@ -58,7 +61,11 @@ class ProductsScreen extends StatelessWidget {
                       onPressed: () async {
                         final search = await showDialog<String>(
                           context: context,
-                          builder: (_) => SearchDialog(),
+                          builder: (_) => SearchDialog(
+                            search: (tx) {
+                            productManager.search = tx;
+                          },
+                          ),
                         );
                         if (search != null) {
                           productManager.search = search;
@@ -79,6 +86,8 @@ class ProductsScreen extends StatelessWidget {
         builder: (_, productManager, __) {
           final filteredProducts = productManager.filteredProducts;
           return ListView.builder(
+            physics:
+                AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
             itemCount: filteredProducts.length,
             itemBuilder: (_, index) {
               return ProductsListTile(

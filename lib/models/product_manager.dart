@@ -14,8 +14,15 @@ class ProductManager extends ChangeNotifier {
   String get search => _search;
 
   set search(String value) {
-    notifyListeners();
     _search = value;
+    notifyListeners();
+    
+  }
+
+  void setSearch(value){
+    _search = value;
+    notifyListeners();
+    print(value+'3');
   }
 
   List<Product> get filteredProducts {
