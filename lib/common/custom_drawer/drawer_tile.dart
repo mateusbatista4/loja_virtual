@@ -15,7 +15,9 @@ class DrawerTile extends StatelessWidget {
     final Color primColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
+        if(current!= pageNumber)
         context.read<PageManager>().setPage(pageNumber);
+        else Navigator.of(context).pop();
       },
       child: SizedBox(
         height: 60,
