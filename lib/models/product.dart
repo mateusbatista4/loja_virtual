@@ -29,4 +29,6 @@ class Product extends ChangeNotifier{
 
   ItemSize get selectedSize => _selectedSize;
 
+  bool get hasSizes => sizes.isNotEmpty;
+
 }

@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/product.dart';
+import 'package:loja_virtual/models/user_manager.dart';
 import 'package:loja_virtual/screens/product/components/size_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -11,8 +12,8 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return ChangeNotifierProvider.value(
-          value: product,
-          child: Scaffold(
+      value: product,
+      child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(product.name),
@@ -33,7 +34,8 @@ class ProductScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 12),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -72,33 +74,62 @@ class ProductScreen extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  product.sizes.isNotEmpty ? 
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 16, bottom: 10),
-                        child: Text(
-                          'Armazenamento:',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      Wrap(
-                        runSpacing: 8,
-                        spacing: 8,
-                        children: product.sizes.map((e){
-                          return SizeWidget(size:e);
-                        }).toList(),
-                      )
-                    ],
-                  )
-                  
-                  : Container(),
+                  product.sizes.isNotEmpty
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(top: 16, bottom: 10),
+                              child: Text(
+                                'Armazenamento:',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Wrap(
+                              runSpacing: 8,
+                              spacing: 8,
+                              children: product.sizes.map((e) {
+                                return SizeWidget(size: e);
+                              }).toList(),
+                            )
+                          ],
+                        )
+                      : Container(),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Consumer2<UserManager, Product>(
+              builder: (context, userManager, product, child) {
+                return SizedBox(
+                  height: 49,
+                  child: RaisedButton(
+                    color: primaryColor,
+                    textColor: Colors.white,
+                    child: Text(
+                      userManager.isLogged
+                          ? 'Adicionar ao Carrinho'
+                          : "Faça Login para Comprar",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    onPressed: product.selectedSize != null || !product.hasSizes
+                        ? () {
+                            if (userManager.isLogged) {
+                              // TODO add to cart
+                            } else
+                              Navigator.of(context).pushNamed('/login');
+                          }
+                        : null,
+                  ),
+                );
+              },
             )
           ],
         ),
