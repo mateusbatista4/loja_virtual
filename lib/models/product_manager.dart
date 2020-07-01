@@ -32,7 +32,7 @@ class ProductManager extends ChangeNotifier {
     } else {
       filteredProducts.addAll(
         allProducts.where(
-          (prod) => prod.name.toLowerCase().contains(search),
+          (prod) => prod.name.toLowerCase().contains(search.toLowerCase()),
         ),
       );
     }
