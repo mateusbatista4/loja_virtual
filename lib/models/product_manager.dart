@@ -22,7 +22,6 @@ class ProductManager extends ChangeNotifier {
   void setSearch(value){
     _search = value;
     notifyListeners();
-    print(value+'3');
   }
 
   List<Product> get filteredProducts {
@@ -32,7 +31,7 @@ class ProductManager extends ChangeNotifier {
     } else {
       filteredProducts.addAll(
         allProducts.where(
-          (prod) => prod.name.toLowerCase().contains(search.toLowerCase()),
+          (prod) => prod.name.toLowerCase().contains(search.toLowerCase(),),
         ),
       );
     }

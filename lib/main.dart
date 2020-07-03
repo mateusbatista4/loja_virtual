@@ -8,7 +8,6 @@ import 'package:loja_virtual/screens/product/product_screen.dart';
 import 'package:loja_virtual/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -16,8 +15,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -33,7 +30,6 @@ class MyApp extends StatelessWidget {
         title: 'Loja do Mateus ',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          
           primaryColor: const Color.fromARGB(255, 4, 125, 141),
           scaffoldBackgroundColor: const Color.fromARGB(255, 4, 125, 141),
           appBarTheme: AppBarTheme(elevation: 0),
@@ -43,18 +39,28 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/signup':
-              return MaterialPageRoute(builder: (_) => SignUpScreen());
+              return MaterialPageRoute(
+                builder: (_) => SignUpScreen(),
+              );
             case '/login':
-              return MaterialPageRoute(builder: (_) => LoginScreen());
+              return MaterialPageRoute(
+                builder: (_) => LoginScreen(),
+              );
             case '/base':
-              return MaterialPageRoute(builder: (_) => BaseScreen());
+              return MaterialPageRoute(
+                builder: (_) => BaseScreen(),
+              );
             case '/product':
-              return MaterialPageRoute(builder: (_) => ProductScreen(
-                product: settings.arguments as Product,
-              ));
+              return MaterialPageRoute(
+                builder: (_) => ProductScreen(
+                  product: settings.arguments as Product,
+                ),
+              );
 
             default:
-              return MaterialPageRoute(builder: (_) => BaseScreen());
+              return MaterialPageRoute(
+                builder: (_) => BaseScreen(),
+              );
           }
         },
       ),
