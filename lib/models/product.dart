@@ -31,4 +31,13 @@ class Product extends ChangeNotifier{
 
   bool get hasSizes => sizes.isNotEmpty;
 
+  ItemSize findSize(String name){
+    try {
+      return sizes.firstWhere((str) => str.name == name);
+    } catch (e) {
+      return null;
+    }
+     
+  }
+
 }
