@@ -21,7 +21,7 @@ class CartManager {
     
     final QuerySnapshot cartSnap = await user.cartReference.getDocuments();
     
-    itens = cartSnap.documents.map((e) => CartProduct.formDocument(e)).toList();
+    itens = cartSnap.documents .map((e) => CartProduct.formDocument(e)).toList();
     
   }
 
