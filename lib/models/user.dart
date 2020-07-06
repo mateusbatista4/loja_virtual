@@ -13,8 +13,13 @@ class User {
   String email;
   String password;
 
+  
+
   DocumentReference get firestoreReference =>
       Firestore.instance.document('users/$id');
+
+  CollectionReference get cartReference =>
+    firestoreReference.collection('cart');
 
   Future<void> saveData() async {
     await firestoreReference.setData({

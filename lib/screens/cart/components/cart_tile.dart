@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/cart_product.dart';
 
 class CartTile extends StatelessWidget {
-  const CartTile({Key key, this.cartProduct}) : super(key: key);
+  const CartTile( this.cartProduct) ;
   final CartProduct cartProduct;
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CartTile extends StatelessWidget {
                       child: Text(
                         cartProduct.size,
                         style: TextStyle(
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),

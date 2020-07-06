@@ -27,8 +27,12 @@ class MyApp extends StatelessWidget {
           create: (_) => ProductManager(),
           lazy: false,
         ),
-        Provider(
+        
+        ProxyProvider<UserManager, CartManager>(
+          update: (_, userManager, cartManager) =>
+              cartManager..updateUser(userManager),
           create: (_) => CartManager(),
+          lazy: false,
         )
       ],
       child: MaterialApp(
