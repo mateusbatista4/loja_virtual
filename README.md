@@ -3,6 +3,10 @@
 In this version, im using Fluter Framework to build my E-commerce Mobile Application Fontend.
 The backend is running in Firebase (Firestore and Firebase-Authentication).
 
+In the future, i'll gonna build a Web frontend version, probably using Angular or Vue.JS Framework.
+
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
