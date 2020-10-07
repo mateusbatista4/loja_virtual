@@ -1,6 +1,7 @@
-# loja_virtual
+# Mateus's E-commerce 
 
-A new Flutter project.
+In this version, im using Fluter Framework to build my E-commerce Mobile Application Fontend.
+The backend is running in Firebase (Firestore and Firebase-Authentication).
 
 ## Getting Started
 
