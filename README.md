@@ -1,9 +1,9 @@
 # Mateus's E-commerce 
 
-In this version, im using Fluter Framework to build my E-commerce Mobile Application Fontend.
+In this version, I'm using Fluter Framework to build my E-commerce Mobile.
 The backend is running in Firebase (Firestore and Firebase-Authentication).
 
-In the future, i'll gonna build a Web frontend version, probably using Angular or Vue.JS Framework.
+In the future, I'll gonna build a Web frontend version, probably using Angular or Vue.JS Framework.
 
 
 
@@ -19,3 +19,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+- Using this [course](https://www.udemy.com/course/lojaflutter/) as reference.
