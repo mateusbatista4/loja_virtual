@@ -3,9 +3,10 @@
 In this version, I'm using Fluter Framework to build my E-commerce Mobile.
 The backend is running in Firebase (Firestore and Firebase-Authentication).
 
+<img src="https://github.com/mateusbatista4/loja_virtual/blob/master/assets/screenshots/Screenshot_20201015-215617.jpg" width="200"> <img src="https://github.com/mateusbatista4/loja_virtual/blob/master/assets/screenshots/Screenshot_20201015-215603.jpg" width="200"> <img src="https://github.com/mateusbatista4/loja_virtual/blob/master/assets/screenshots/Screenshot_20201015-215608.jpg" width="200">
+<img src="https://github.com/mateusbatista4/loja_virtual/blob/master/assets/screenshots/Screenshot_20201015-221333.jpg" width="200"> <img src="https://github.com/mateusbatista4/loja_virtual/blob/master/assets/screenshots/Screenshot_20201015-221740.jpg" width="200">
+
 In the future, I'll gonna build a Web frontend version, probably using Angular or Vue.JS Framework.
-
-
 
 ## Getting Started
 
