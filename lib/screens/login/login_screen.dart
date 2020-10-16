@@ -13,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<UserManager>(
       builder: (context, userManager, child) => Scaffold(
+        backgroundColor: Colors.white,
         key: _scaffoldKey,
         appBar: AppBar(
           actions: <Widget>[
@@ -38,94 +39,110 @@ class LoginScreen extends StatelessWidget {
           title: Text("Login"),
         ),
         body: Center(
-          child: Card(
-            elevation: 4,
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Form(
-              key: _formKey,
-              child: ListView(
-                padding: EdgeInsets.all(18),
-                shrinkWrap: true,
-                children: <Widget>[
-                  TextFormField(
-                    enabled: !userManager.loading,
-                    controller: emailController,
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(hintText: "Email"),
-                    validator: (email) {
-                      if (!emailValidator(email))
-                        return "Email inválido";
-                      else
-                        return null;
-                    },
+          child: SingleChildScrollView(
+                      child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical:20),
+                  child: Image.asset(
+                    "assets/images/online_shopping__monochromatic.png",
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width / 1.4,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    enabled: !userManager.loading,
-                    controller: passwordController,
-                    decoration: InputDecoration(hintText: "Senha"),
-                    obscureText: true,
-                    autocorrect: false,
-                    validator: (senha) {
-                      if (senha.isEmpty)
-                        return "A senha não pode ser nula";
-                      else if (senha.length < 6)
-                        return "A senha muito curta";
-                      else
-                        return null;
-                    },
-                  ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: FlatButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: Text(
-                        "Esqueci minha senha",
-                        style: TextStyle(color: Colors.black54),
-                      ),
+                ),
+                
+                Card(
+                  elevation: 9,
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Form(
+                    key: _formKey,
+                    child: ListView(
+                      padding: EdgeInsets.all(18),
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        TextFormField(
+                          enabled: !userManager.loading,
+                          controller: emailController,
+                          autocorrect: false,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(hintText: "Email"),
+                          validator: (email) {
+                            if (!emailValidator(email))
+                              return "Email inválido";
+                            else
+                              return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          enabled: !userManager.loading,
+                          controller: passwordController,
+                          decoration: InputDecoration(hintText: "Senha"),
+                          obscureText: true,
+                          autocorrect: false,
+                          validator: (senha) {
+                            if (senha.isEmpty)
+                              return "A senha não pode ser nula";
+                            else if (senha.length < 6)
+                              return "A senha muito curta";
+                            else
+                              return null;
+                          },
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: FlatButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {},
+                            child: Text(
+                              "Esqueci minha senha",
+                              style: TextStyle(color: Colors.black54),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Container(
+                          height: 45,
+                          child: RaisedButton(
+                            onPressed: userManager.loading
+                                ? null
+                                : () {
+                                    if (_formKey.currentState.validate()) {
+                                      userManager.signIn(
+                                        onSuccess: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        onFail: (erro) {
+                                          _scaffoldKey.currentState.showSnackBar(
+                                            SnackBar(
+                                              backgroundColor: Colors.redAccent,
+                                              content:
+                                                  Text('Falha no Login: $erro'),
+                                            ),
+                                          );
+                                        },
+                                        user: User(
+                                            email: emailController.text,
+                                            password: passwordController.text),
+                                      );
+                                    }
+                                  },
+                            color: Theme.of(context).primaryColor,
+                            disabledColor:
+                                Theme.of(context).primaryColor.withAlpha(100),
+                            textColor: Colors.white,
+                            child: Text("Entrar"),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Container(
-                    height: 45,
-                    child: RaisedButton(
-                      onPressed: userManager.loading
-                          ? null
-                          : () {
-                              if (_formKey.currentState.validate()) {
-                                userManager.signIn(
-                                  onSuccess: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  onFail: (erro) {
-                                    _scaffoldKey.currentState.showSnackBar(
-                                      SnackBar(
-                                        backgroundColor: Colors.redAccent,
-                                        content: Text('Falha no Login: $erro'),
-                                      ),
-                                    );
-                                  },
-                                  user: User(
-                                      email: emailController.text,
-                                      password: passwordController.text),
-                                );
-                              }
-                            },
-                      color: Theme.of(context).primaryColor,
-                      disabledColor:
-                          Theme.of(context).primaryColor.withAlpha(100),
-                      textColor: Colors.white,
-                      child: Text("Entrar"),
-                    ),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -12,13 +12,15 @@ class CustomDrawer extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: 
-              [
+              
+              gradient: LinearGradient( 
+              colors: [
                 const Color.fromARGB(255, 203, 236, 241),
                 Colors.grey[100]
               ],
               begin: Alignment.topCenter,
-              end: Alignment.bottomCenter
+              end: Alignment.bottomCenter,
+              
               )
             ),
           ),

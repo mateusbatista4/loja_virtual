@@ -39,8 +39,9 @@ class MyApp extends StatelessWidget {
         title: 'Loja do Mateus ',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: const Color.fromARGB(255, 4, 125, 141),
-          scaffoldBackgroundColor: const Color.fromARGB(255, 4, 125, 141),
+          primaryColor: Colors.blue,
+          accentColor: Colors.yellowAccent,
+          scaffoldBackgroundColor: Colors.blue,
           appBarTheme: AppBarTheme(elevation: 0),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
